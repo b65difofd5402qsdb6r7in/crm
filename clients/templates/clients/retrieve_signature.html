@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Reprint Signature</title>
+		<style>
+			#reprinted-signature-container {
+				height: 100px;
+				width: 300px;
+				border: 1px solid #ccc;
+				margin: 10px;
+			}
+		</style>
+	</head>
+	<body>
+		<h1>Reprint Signature</h1>
+
+		<div id="reprinted-signature-container"></div>
+
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jSignature/2.1.2/jSignature.min.js"></script>
+		<script>
+			$(document).ready(function () {
+				var signatureData = "{{ signature.signature_data }}"; // Load the signature data from the Django model
+
+				$("#reprinted-signature-container").jSignature({
+					"decor-color": "transparent",
+					"background-color": "transparent",
+					color: "#000",
+					data: signatureData,
+					width: 300,
+					height: 100,
+				});
+			});
+		</script>
+	</body>
+</html>

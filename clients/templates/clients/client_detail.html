@@ -1,0 +1,78 @@
+{% extends "base.html" %} {% block content %}
+
+<div class="bg-gray-300 p-4 rounded-lg shadow-md">
+	<h2 class="text-lg font-semibold mb-2">Informations du client</h2>
+	<div class="grid grid-cols-3 gap-4">
+		<div class="border rounded-t-lg">
+			<p class="font-medium border-b pb-1 bg-indigo-500 rounded-t-lg p-3">
+				Name / Prénom:
+			</p>
+			<p class="text-gray-700 bg-white p-3">
+				{{client.civilite}}. {{client.nom}} / {{client.prenom}}
+			</p>
+		</div>
+		<div class="border rounded-t-lg">
+			<p class="font-medium border-b pb-1 bg-indigo-500 rounded-t-lg p-3">
+				Email:
+			</p>
+			<p class="text-gray-700 bg-white p-3">{{client.email}}</p>
+		</div>
+		<div class="border rounded-t-lg">
+			<p class="font-medium border-b pb-1 bg-indigo-500 rounded-t-lg p-3">
+				Phone:
+			</p>
+			<p class="text-gray-700 bg-white p-3">{{client.numero_telephone}}</p>
+		</div>
+		<div class="border rounded-t-lg">
+			<p class="font-medium border-b pb-1 bg-indigo-500 rounded-t-lg p-3">
+				Societe:
+			</p>
+			<p class="text-gray-700 bg-white p-3">{{client.nom_societe}}</p>
+		</div>
+		<div class="border rounded-t-lg">
+			<p class="font-medium border-b pb-1 bg-indigo-500 rounded-t-lg p-3">
+				Siret:
+			</p>
+			<p class="text-gray-700 bg-white p-3">{{client.siret}}</p>
+		</div>
+		<div class="border rounded-t-lg">
+			<p class="font-medium border-b pb-1 bg-indigo-500 rounded-t-lg p-3">
+				Régime:
+			</p>
+			<p class="text-gray-700 bg-white p-3">{{client.statut_juridique}}</p>
+		</div>
+		<div class="border rounded-t-lg">
+			<p class="font-medium border-b pb-1 bg-indigo-500 rounded-t-lg p-3">
+				Commercial:
+			</p>
+			<p class="text-gray-700 bg-white p-3">
+				{{client.responsable_commercial}}
+			</p>
+		</div>
+		<div class="col-span-2 border rounded-t-lg">
+			<p class="font-medium border-b pb-1 bg-indigo-500 rounded-t-lg p-3">
+				Commentaire:
+			</p>
+			<p class="text-gray-700 bg-white p-3">{{client.commentaire}}</p>
+		</div>
+		<div class="col-span-3 border rounded-b-lg p-3 flex justify-evenly">
+			<button
+				class="bg-orange-500 hover:bg-orange-600 text-white py-2 px-4 rounded-lg border-2 border-orange-500"
+			>
+				<a href="{% url 'clients:update' client.pk %}"> Modifier </a>
+			</button>
+			<button
+				class="bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded-lg border-2 border-red-500"
+			>
+				<a href="{% url 'clients:delete' client.pk %}"> Supprimer </a>
+			</button>
+		</div>
+	</div>
+</div>
+
+<div>
+	<p><a href="{% url 'clients:create' %}"> Creer un client</a></p>
+	<p><a href="{% url 'clients:update' client.pk %}"> Modifier</a></p>
+	<p><a href="{% url 'clients:delete' client.pk %}"> Supprimer</a></p>
+	{% endblock%}
+</div>

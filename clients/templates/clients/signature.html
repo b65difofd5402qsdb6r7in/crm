@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Signature Example</title>
+		<style>
+			#signature-container {
+				height: 100px;
+				width: 300px;
+				border: 1px solid #ccc;
+				margin: 10px;
+			}
+		</style>
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/jSignature/2.1.2/jSignature.min.css"
+		/>
+	</head>
+	<body>
+		<h1>Signature Example</h1>
+
+		<div id="signature-container">
+			<div id="signature"></div>
+		</div>
+
+		<button id="submit-button">Submit</button>
+
+		<form
+			id="signature-form"
+			method="POST"
+			action="{% url 'clients:store_signature' %}"
+		>
+			{% csrf_token %}
+			<input type="hidden" name="signature_data" id="signature-data" />
+			<button type="submit" style="display: none">Submit Form</button>
+		</form>
+
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jSignature/2.1.2/jSignature.min.js"></script>
+		<script>
+			$(document).ready(function () {
+				var $signature = $("#signature");
+				$signature.jSignature();
+
+				$("#submit-button").click(function () {
+					var signatureData = $signature.jSignature("getData", "base30");
+					$("#signature-data").val(signatureData);
+
+					// Submit the form
+					$("#signature-form").submit();
+				});
+			});
+		</script>
+	</body>
+</html>

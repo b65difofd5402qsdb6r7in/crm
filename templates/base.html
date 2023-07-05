@@ -1,0 +1,95 @@
+{% load static %}
+<DOCTYPE html>
+	<html lang="fr">
+		<head>
+			<meta charset="UTF-8" />
+			<meta name="viewport" content="width=device-width" iniatial-scale="1.0" />
+			<title>Accueil</title>
+			<script src="https://cdn.tailwindcss.com"></script>
+			<link
+				rel="shortcut icon"
+				type="image/png"
+				href="{% static 'favicon.png' %}"
+			/>
+		</head>
+		<body>
+			<header class="text-black-600 font-bold body-font bg-indigo-500">
+				<div
+					class="container mx-auto flex flex-wrap flex-col md:flex-row items-center"
+				>
+					<a
+						class="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0"
+					>
+						<img
+							src="{% static 'logo.png' %}"
+							alt="Logo"
+							class="w-14 h-14 text-white bg-white rounded-full my-2"
+						/>
+
+						<span class="ml-3 font-bold text-gray-200">Axeo'Com CRM</span>
+					</a>
+
+					<nav
+						class="md:ml-auto md:mr-auto flex flex-wrap items-center text-base justify-center"
+					>
+						<a
+							href="{% url 'clients:utilisateur-list' %}"
+							class="mr-5 hover:text-gray-400"
+							>Employes</a
+						>
+						<a class="mr-5 hover:text-gray-400">Devis</a>
+						<a class="mr-5 hover:text-gray-400">Produits</a>
+						<a href="{% url 'clients:list'  %}" class="mr-5 hover:text-gray-400"
+							>Clients</a
+						>
+					</nav>
+					{% if request.user.is_authenticated%}
+					<div class="mr-5 text-red-800">
+						Bonjour , {{request.user.username }}
+					</div>
+					
+					<button
+						class="inline-flex items-center bg-gray-100 border-0 py-1 px-3 focus:outline-none hover:bg-gray-200 rounded text-base mt-4 md:mt-0"
+					>
+					<a href= {% url 'logout' %}>
+						Se Deconnecter
+						<svg
+							fill="none"
+							stroke="currentColor"
+							stroke-linecap="round"
+							stroke-linejoin="round"
+							stroke-width="2"
+							class="w-4 h-4"
+							viewBox="0 0 24 24"
+						>
+						</svg>
+					</a>
+					</button>
+					{% else %}
+					<button
+						class="inline-flex items-center bg-gray-100 border-0 py-1 px-3 focus:outline-none hover:bg-gray-200 rounded text-base mt-4 md:mt-0"
+					>
+					<a href= {% url 'login' %}>
+						Se Connecter
+						<svg
+							fill="none"
+							stroke="currentColor"
+							stroke-linecap="round"
+							stroke-linejoin="round"
+							stroke-width="2"
+							class="w-4 h-4 ml-1"
+							viewBox="0 0 24 24"
+						>
+							
+						</svg>
+					</a>
+					</button>
+
+					{% endif%}
+				</div>
+			</header>
+
+			{% block content %} {% endblock content%}
+		</body>
+	</html></DOCTYPE
+>

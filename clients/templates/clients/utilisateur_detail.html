@@ -1,0 +1,82 @@
+{% extends "base.html" %} {% block content %}
+
+<div class="bg-gray-300 p-4 rounded-lg shadow-md">
+	<h2 class="text-lg font-semibold mb-2">Informations de l'utilisateur</h2>
+	<div class="grid grid-cols-3 gap-4">
+		<div class="border rounded-t-lg">
+			<p class="font-medium border-b pb-1 bg-indigo-500 rounded-t-lg p-3">
+				Name / Prénom:
+			</p>
+			<p class="text-gray-700 bg-white p-3">
+				{{utilisateur.nom}} / {{utilisateur.prenom}}
+			</p>
+		</div>
+		<div class="border rounded-t-lg">
+			<p class="font-medium border-b pb-1 bg-indigo-500 rounded-t-lg p-3">
+				Email:
+			</p>
+			<p class="text-gray-700 bg-white p-3">{{utilisateur.email}}</p>
+		</div>
+		<div class="border rounded-t-lg">
+			<p class="font-medium border-b pb-1 bg-indigo-500 rounded-t-lg p-3">
+				Tel
+			</p>
+			<p class="text-gray-700 bg-white p-3">{{utilisateur.numero_telephone}}</p>
+		</div>
+
+		<div class="border rounded-t-lg">
+			<p class="font-medium border-b pb-1 bg-indigo-500 rounded-t-lg p-3">
+				Fonction
+			</p>
+			<p class="text-gray-700 bg-white p-3">{{utilisateur.fonction}}</p>
+		</div>
+
+		<div class="border rounded-t-lg">
+			<p class="font-medium border-b pb-1 bg-indigo-500 rounded-t-lg p-3">
+				Username
+			</p>
+			<p class="text-gray-700 bg-white p-3">{{utilisateur.username}}</p>
+		</div>
+
+		<div class="border rounded-t-lg">
+			<p class="font-medium border-b pb-1 bg-indigo-500 rounded-t-lg p-3">
+				password
+			</p>
+			<p class="text-gray-700 bg-white p-3">{{utilisateur.password}}</p>
+		</div>
+
+		<div class="col-span-3 border rounded-b-lg p-3 flex justify-evenly">
+			<button
+				class="bg-orange-500 hover:bg-orange-600 text-white py-2 px-4 rounded-lg border-2 border-orange-500"
+			>
+				<a href="{% url 'clients:utilisateur-update' utilisateur.pk %}">
+					Modifier
+				</a>
+			</button>
+			<button
+				class="bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded-lg border-2 border-red-500"
+			>
+				<a href="{% url 'clients:utilisateur-delete' utilisateur.pk %}">
+					Supprimer
+				</a>
+			</button>
+		</div>
+	</div>
+</div>
+
+<div>
+	<p>
+		<a href="{% url 'clients:utilisateur-create' %}"> Creer un utilisateur</a>
+	</p>
+	<p>
+		<a href="{% url 'clients:utilisateur-update' utilisateur.pk %}">
+			Modifier</a
+		>
+	</p>
+	<p>
+		<a href="{% url 'clients:utilisateur-delete' utilisateur.pk %}">
+			Supprimer</a
+		>
+	</p>
+	{% endblock%}
+</div>
